@@ -76,20 +76,52 @@
       <p style="font-weight: bold; margin-left: 20px;">解析結果</p>
       <?php
         echo '<p style="margin-left: 20px; margin-right: 20px;">'.$analyzed[0][0].'</p>';
-        // $now=[1,0];
-        // for ($i=0; $i<$pt; $i++) {
-        //   $tmp='';
-        //   for ($j=0; $j<count($now); $j++) {
-        //     $tmp=
-        //   }
-        //   echo '<div style="border-bottom: 1px solid #999;"><p style="margin-left: 20px; margin-right: 20px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$analyzed[$i][$j].'</p></div>';
-          // echo '<div style="border-bottom: 1px solid #999;"><p style="margin-left: 20px; margin-right: 20px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$analyzed[$i][$j].'</p></div>';
-        // }
+        $x=1;
+        $idx=[];
+        for ($i=0; $i<count($analyzed); $i++) {
+          $idx[]=0;
+        }
+        for ($i=0; $i<$pt; $i++) {
+          $tmp=$analyzed[$x][$idx[$x]];
+          $idx[$x]+=1;
+          $flag=0;
+          if ($i<$pt-1){
+            echo '<div style="border-bottom: 1px solid #999;"><p style="margin-left: '.($x*30-10).'px; margin-right: 20px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$tmp.'</p></div>';
+          }
+          else {
+            echo '<div><p style="margin-left: '.($x*30-10).'px; margin-right: 20px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$tmp.'</p></div>';
+          }
+          $id=substr(explode("]",$tmp)[0],1);
+          if ($x<count($analyzed)-1 && $x+1<count($idx)) {
+            $t=substr(explode("]",$analyzed[$x+1][$idx[$x+1]])[0],1);
+            if ($id==substr($t,0,strlen($id))) {
+              $x+=1;
+              $flag=1;
+            }
+          }
+          if ($flag==0) {
+            $p=substr(substr(explode("]",$analyzed[$x][$idx[$x]-1])[0],1),0,strlen(substr(explode("]",$analyzed[$x][$idx[$x]-1])[0],1))-1);
+            $q=substr(substr(explode("]",$analyzed[$x][$idx[$x]])[0],1),0,strlen(substr(explode("]",$analyzed[$x][$idx[$x]-1])[0],1))-1);
+            while (count($analyzed[$x])==$idx[$x] || $p!=$q) {
+              $x-=1;
+              if ($x<count($analyzed)) {
+                $p=substr(substr(explode("]",$analyzed[$x][$idx[$x]-1])[0],1),0,strlen(substr(explode("]",$analyzed[$x][$idx[$x]-1])[0],1))-1);
+                $q=substr(substr(explode("]",$analyzed[$x][$idx[$x]])[0],1),0,strlen(substr(explode("]",$analyzed[$x][$idx[$x]-1])[0],1))-1);
+              }
+              else {
+                break;
+              }
+              if ($x==0) {
+                break;
+              }
+            }
+          }
+        }
       ?>
     </div>
   </div>
-  <ul>
-  <li><a href="kadai01.php">戻る</a></li>
+  <ul style="list-style: none; padding-left: 0;">
+  <li style="width: 70%; margin-left: auto; margin-right: auto;"><a href="kadai01.php">戻る</a></li>
   </ul>
 </body>
 </html>
