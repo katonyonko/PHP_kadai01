@@ -1,4 +1,3 @@
-<!-- PHP覚えて新しいことできるようになったら楽しそうだな→習ったPHPの機能って全部JSでもできますやん→じゃあコストかけて新しい言語を習得する意味って何？→課題は出さないといけないので、とりあえず書くか→PHPの必要性はいまだしっくりこないが、物が動くのはやっぱり楽しい（←今ここ） -->
 <!-- 空で入力したときのエラー -->
 <html>
 	<head>
@@ -11,7 +10,7 @@
 		<p style="text-align: center; margin-top: 0; color: #0070f0;  user-select:none; font-weight: bold; font-style: italic; font-family: 'ＭＳ Ｐゴシック';">条文解析ツール</p>
 		<h2 style="width: 70%; margin-left: auto; margin-right: auto; color: #00a0e0; text-decoration: underline;">１．ツールを使う</h2>
 		<p style="width: 70%; margin-left: auto; margin-right: auto; color: #444;">解析したい条文を入力してください:</p>
-		<form action="kadai01_write.php" method="post" style="margin-left: auto; margin-right: auto; width: 70%; display: flex; justify-content: space-between; align-items: flex-end;">
+		<form action="kadai01_result.php" method="post" style="margin-left: auto; margin-right: auto; width: 70%; display: flex; justify-content: space-between; align-items: flex-end;">
 			<textarea name="article" style="height: 200px; width: 90%; border-radius:10px; padding: 8px 8px;"></textarea>
 			<input type="submit" value="解析する" id="analyze" style="height: 50px; margin-bottom: 0px; border-radius:10px;">
 		</form>
@@ -40,7 +39,66 @@
 				<div><p style="margin-top: 5px; margin-bottom: 5px; font-size: 16px;">[5] 第5項において同じ。</p></div>
 			</div>
 		</div>
-
+		<h2 style="width: 70%; margin-left: auto; margin-right: auto; color: #00a0e0; text-decoration: underline;">３．（参考）このツールで保険業法の全条文を解析した結果</h2>
+		<p style="width: 70%; margin-left: auto; margin-right: auto; color: #444;">政府の提供している<a href="https://elaws.e-gov.go.jp/apitop/#">法令API</a>から、私の大好きな保険業法の全条文データを抽出してこの解析ツールに掛けてみた結果のサマリーを以下に掲載します（総数＜深さとなっている箇所はなんらかのバグだけど未調査）。</p>
+		<table style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;" cellspacing="0">
+			<tr>
+				<td style="background:yellow;border:1px solid; width: 12%;">深さ＼総数</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">0</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">1</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">2</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">3</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">4</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">5</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">6</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">7</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">8</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">9</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">10</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">11</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">12</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">13</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">14</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">15</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">16</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">17</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">18</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">19</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">20</td>
+				<td style="background:yellow;border:1px solid; width: 4%;">20超</td>
+			</tr>
+			<?php
+			$filename = 'data/data2.txt';
+			// fopenでファイルを開く（'r'は読み込みモードで開く）
+			$fp = fopen($filename, 'r');
+			//結果の配列を定義
+			$list = [];
+			for ($i=0; $i<12; $i++) {
+				$list[$i]=[];
+				for ($j=0; $j<22; $j++) {
+					$list[$i][$j]=0;
+				}
+			}
+			// whileで行末までループ処理
+			while (!feof($fp)) {
+				// fgetssの第二引数(バイト数)と第三引数(除外しないタグを指定)は省略可能
+				$txt = fgets($fp);
+				$tmp = explode(' ',$txt);
+				$i=min((int) $tmp[0], 12); //括弧の深さ
+				$j=min((int) $tmp[1], 22); //括弧の総数
+				$list[$i][$j]+=1;
+			}
+			for ($i=0; $i<6; $i++) {
+				echo "<tr><td style='background:#ffffe0;border:1px solid;'>".$i."</td>";
+				for ($j=0; $j<22; $j++) {
+					echo "<td style='background:#ffffe0;border:1px solid;'>".$list[$i][$j]."</td>";
+				}
+				echo "</tr>";
+			}
+			fclose($fp);
+			?>
+		</table>
+		<p style="width: 70%; margin-left: auto; margin-right: auto; text-align: right;">以上</p>
 		<script>
 			const btn=document.getElementById('analyze');
 			btn.addEventListener('mouseover', function() {
