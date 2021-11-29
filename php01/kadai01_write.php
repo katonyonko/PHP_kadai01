@@ -62,7 +62,7 @@
     for ($i=1; $i<count($analyzed); $i++) {
       $pt+=count($analyzed[$i]);
     }
-    echo '<p style="width: 70%; margin-left: auto; margin-right: auto; color: #555;">この文章の括弧の最大の深さは'.(count($analyzed)-1).'、括弧の総数は'.$pt.'でした。</p>';
+    echo '<p style="width: 70%; margin-left: auto; margin-right: auto; color: #555;">この文章の括弧の<span style="font-weight: bold; text-decoration: underline; color: #bb0000;">最大の深さは'.(count($analyzed)-1).'</span>、<span style="font-weight: bold; text-decoration: underline; color: #bb0000;">括弧の総数は'.$pt.'</span>でした。</p>';
   ?>
   <!-- 最大の深さと括弧の数 -->
   <div style="display: flex; justify-content: space-between; width: 70%; margin-left: auto; margin-right: auto;">
@@ -86,10 +86,10 @@
           $idx[$x]+=1;
           $flag=0;
           if ($i<$pt-1){
-            echo '<div style="border-bottom: 1px solid #999;"><p style="margin-left: '.($x*30-10).'px; margin-right: 20px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$tmp.'</p></div>';
+            echo '<div style="border-bottom: 1px solid #999; margin-left: 20px; margin-right: 20px;"><p style="margin-left: '.($x*30-20).'px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$tmp.'</p></div>';
           }
           else {
-            echo '<div><p style="margin-left: '.($x*30-10).'px; margin-right: 20px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$tmp.'</p></div>';
+            echo '<div style="margin-left: 20px; margin-right: 20px;"><p style="margin-left: '.($x*30-20).'px; margin-top: 5px; margin-bottom: 5px; font-size: 16px;">'.$tmp.'</p></div>';
           }
           $id=substr(explode("]",$tmp)[0],1);
           if ($x<count($analyzed)-1 && $x+1<count($idx)) {

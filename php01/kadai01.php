@@ -16,7 +16,7 @@
 			<input type="submit" value="解析する" id="analyze" style="height: 50px; margin-bottom: 0px; border-radius:10px;">
 		</form>
 		<h2 style="width: 70%; margin-left: auto; margin-right: auto; color: #00a0e0; text-decoration: underline;">２．ツールの説明</h2>
-		<p style="width: 70%; margin-left: auto; margin-right: auto; color: #444;">日本の法律の条文って以下の例のように括弧が深くネストされていて、とても読みにくいですよね？このツールは、ネストされた条文の括弧の構造を整理し、理解しやすいように変換します。</p>
+		<p style="width: 70%; margin-left: auto; margin-right: auto; color: #444;">日本の法律の条文って以下の例のように括弧が深くネストされていて、とても読みにくいですよね。このツールは、ネストされた条文の括弧の構造を整理し、理解しやすいように変換します。</p>
 		<div style="display: flex; width: 70%; margin-left: auto; margin-right: auto; margin-bottom: 30px; border: 1px solid #999; border-radius:10px; color: #555;">
 			<div style="width: 45%; margin-left:20px">
 				<p style="font-weight: bold">例：平成23年3月31日金融庁告示第23号第2条(資本金、基金、準備金等の計算)</p>
@@ -24,8 +24,8 @@
 			</div>
 			<p style="width: 10%; text-align: center; margin-top: 80px;">整理<br>→</p>
 			<div style="width: 45%; margin-right:20px">
-				<p style="font-weight: bold">条文の構造</p>
-				<p>保険業法施行規則(*1)第86条の2第1項又は第210条の11の3第1項に規定する繰延税金資産(*2)の不算入額は、保険会社及びその国内連結保険子法人等(*3)又は保険持株会社の国内連結保険子法人等に係る不算入額(*4)の合計額とする(*5)</p>
+				<p style="font-weight: bold">条文の構造（このツールを用いて変換した形）</p>
+				<p>保険業法施行規則(*1)第86条の2第1項又は第210条の11の3第1項に規定する繰延税金資産(*2)の不算入額は、保険会社及びその国内連結保険子法人等(*3)又は保険持株会社の国内連結保険子法人等に係る不算入額(*4)の合計額とする(*5)。</p>
 				<div style="border-bottom: 1px solid #999;"><p style="margin-top: 5px; margin-bottom: 5px; font-size: 16px;">[1] 以下「規則」という。</p></div>
 				<div style="border-bottom: 1px solid #999;"><p style="margin-top: 5px; margin-bottom: 5px; font-size: 16px;">[2] 税効果会計(*2-1)の適用により資産として計上されるものをいう。以下同じ。</p></div>
 				<div style="border-bottom: 1px solid #999;"><p style="margin-top: 5px; margin-bottom: 5px; font-size: 16px; margin-left: 30px;">[2-1] 連結貸借対照表に計上されている資産及び負債の金額と課税所得の計算の結果算定された資産及び負債の金額との間に差異がある場合において、当該差異に係る法人税等(*2-1-1)の金額を適切に期間配分することにより、法人税等を控除する前の当期純利益又は当期純剰余の金額と法人税等の金額を合理的に対応させるための会計処理をいう。以下同じ。</p></div>
